@@ -9,7 +9,8 @@ class UserController < ApplicationController
     post '/signup' do
         params.each do |label, input|
           if input.empty?
-            flash[:new_user_error] = "Please enter a value for #{label}"
+            #flash[:signup_error] = "Please enter a value for #{label}"
+            @error
             redirect to '/signup'
           end
         end
@@ -35,7 +36,7 @@ class UserController < ApplicationController
             session[:user_id] = user.id 
             redirect to '/posts'     
         else
-            #flash[:message] = "Incorrect username of password. Please try again."
+            flash[:message] = "Incorrect username of password. Please try again."
             redirect to '/login'
         end
     end     
