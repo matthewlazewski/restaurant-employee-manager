@@ -6,17 +6,18 @@ class UserController < ApplicationController
         erb :'users/signup' 
     end 
 
-    post '/signup' do 
-        user = User.new(params[:user])
-        if user.save 
-            session[:user_id] = user.id
-
-            redirect to '/posts'
-        else 
-            binding.pry 
-            #flash[:message] = "Request Failed. Please try again."
-            erb :'users/signup'
-        end 
+    post '/signup' do
+        params.each do |label, input|
+          if input.empty?
+            flash[:new_user_error] = "Please enter a value for #{label}"
+            redirect to '/signup'
+          end
+        end
+    
+        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
+        session[:user_id] = user.id
+    
+        redirect to '/posts'
     end
 
     get '/logout' do 
@@ -29,8 +30,8 @@ class UserController < ApplicationController
     end 
 
     post '/login' do 
-        user = User.find_by_username(params[:user][:username]) #finds the existence of the user 
-        if user && user.authenticate(params[:user][:password]) #verifies both inputs were correct
+        user = User.find_by(:username => params["username"]) #finds the existence of the user 
+        if user && user.authenticate(params[:password]) #verifies both inputs were correct
             session[:user_id] = user.id 
             redirect to '/posts'     
         else
