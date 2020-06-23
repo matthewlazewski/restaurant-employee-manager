@@ -1,6 +1,8 @@
+require 'pry'
 class PostController < ApplicationController 
     get '/posts' do 
         @posts = Post.all 
+        @user = current_user 
         erb :'posts/index'
     end 
 
@@ -16,6 +18,20 @@ class PostController < ApplicationController
         erb :'posts/show'
     end 
 
+    get '/posts/:id/edit' do 
+        if !logged_in? 
+            redirect to '/login'
+        end 
+
+        @post = Post.find(params[:id])
+
+        if current_user.id != @post.user_id
+            flash[:message] = "You don't have access to edit this post. " 
+            redirect to '/posts'
+        end 
+        erb :'/posts/edit'
+    end 
+
     post '/posts' do 
         user = current_user 
         if params["content"].empty?
@@ -29,8 +45,13 @@ class PostController < ApplicationController
 
     patch '/posts/:id' do 
         post = Post.find(params[:id])
-        post.update(:content => params["content"])
-        post.save 
+        
+        if current_user.id == post.user_id 
+            post.update(:content => params["content"])
+            post.save 
+        else 
+            #error 
+        end
         redirect to "/posts/#{post.id}"
     end 
 

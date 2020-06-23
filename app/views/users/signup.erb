@@ -7,5 +7,9 @@
   <p>Username: <input type="text" name="username"></p> 
   <p>Email: <input type="text" name="email"></p>
   <p>Password: <input type="password" name="password"></p>
+
+  <% @jobs.each do |job| %>
+    <input id="<%= job.name %>" type="checkbox" name="user[jobs][]" value="<%= job.id %>"><%= job.name %><br>
+  <% end %>
   <input type="submit" value="Sign Up">
 </form>
