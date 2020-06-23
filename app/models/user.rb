@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
     enum role: [:employee, :manager]
 
-    def set_default_role 
+    def self.set_default_role 
         self.role ||= :manager 
     end 
 end 

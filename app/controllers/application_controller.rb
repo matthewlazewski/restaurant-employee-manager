@@ -14,6 +14,10 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get "/clear" do 
+    session.destroy
+  end 
+
   helpers do
     def logged_in? 
       !!session[:user_id]

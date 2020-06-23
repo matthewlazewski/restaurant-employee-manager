@@ -8,8 +8,9 @@
   <p>Email: <input type="text" name="email"></p>
   <p>Password: <input type="password" name="password"></p>
 
+  <p>If not, what is your position?</p>
   <% @jobs.each do |job| %>
-    <input id="<%= job.name %>" type="checkbox" name="user[jobs][]" value="<%= job.id %>"><%= job.name %><br>
+    <input id="<%= job.name %>" type="radio" name="user[jobs][]" value="<%= job.id %>"><%= job.name %><br>
   <% end %>
   <input type="submit" value="Sign Up">
 </form>

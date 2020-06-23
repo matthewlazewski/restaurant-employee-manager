@@ -1,0 +1,9 @@
+<h1><strong>Edit Job</strong></h1>
+
+<form action="/jobs/<%= @job.id %>" method="POST">
+    <input id= "hidden" type = "hidden" name="_method" value="patch">
+    <textarea type="text" name="content" rows="5" cols="50"><%= @job.content %></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Edit">
+</form>
