@@ -27,5 +27,12 @@ class PostController < ApplicationController
         redirect to '/posts'
     end 
 
+    patch '/posts/:id' do 
+        post = Post.find(params[:id])
+        post.update(:content => params["content"])
+        post.save 
+        redirect to "/posts/#{post.id}"
+    end 
+
 
 end 
