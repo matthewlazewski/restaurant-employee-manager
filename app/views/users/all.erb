@@ -1,0 +1,7 @@
+<h1>All Employees: </h1>
+
+<% @users.each do |user| %>
+    <ul>
+        <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
+    </ul>
+<% end %>
