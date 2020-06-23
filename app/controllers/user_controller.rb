@@ -8,6 +8,7 @@ class UserController < ApplicationController
     end
 
     get '/signup' do 
+        @jobs = Job.all 
         erb :'users/signup' 
     end 
 
