@@ -22,6 +22,10 @@ class ApplicationController < Sinatra::Base
     def current_user 
       @current_user ||= User.find_by_id(session[:user_id])
     end 
+
+    def set_default_role 
+      @current_user.role ||= :manager 
+    end 
   end 
 
 end

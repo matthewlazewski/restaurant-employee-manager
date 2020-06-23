@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
     has_many :posts 
     has_secure_password 
 
-    def slug 
-        username = self.username 
-        slug = username.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+    enum role: [:employee, :manager]
+
+    def set_default_role 
+        self.role ||= :manager 
     end 
 end 

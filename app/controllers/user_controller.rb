@@ -21,11 +21,17 @@ class UserController < ApplicationController
           end
         end
     
-        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
+        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"]).set_default_role 
         session[:user_id] = user.id
     
         redirect to '/posts'
     end
+
+    get '/users/:id' do 
+        @post = Post.find_by(params[:user_id])
+        @user = User.find_by(params[:id])
+        erb :'/posts/show'
+    end 
 
     get '/logout' do 
         session.clear 
