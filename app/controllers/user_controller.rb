@@ -2,6 +2,11 @@ require 'pry'
 
 class UserController < ApplicationController 
 
+    get '/users/all' do
+        @users = User.all 
+        erb :'/users/all'
+    end
+
     get '/signup' do 
         erb :'users/signup' 
     end 
@@ -36,7 +41,7 @@ class UserController < ApplicationController
             session[:user_id] = user.id 
             redirect to '/posts'     
         else
-            flash[:message] = "Incorrect username of password. Please try again."
+            #flash[:message] = "Incorrect username of password. Please try again."
             redirect to '/login'
         end
     end     

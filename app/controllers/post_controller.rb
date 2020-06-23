@@ -13,7 +13,7 @@ class PostController < ApplicationController
     
     get '/posts/:id' do 
         @post = Post.find(params[:id])
-        erb :'posts/edit'
+        erb :'posts/show'
     end 
 
     post '/posts' do 
@@ -22,7 +22,7 @@ class PostController < ApplicationController
             #flash[:no_content] = "Please fill your post."
             redirect to '/posts/new'
         end 
-        post = Post.create(:content => params["content"], :user_id => user.id)
+        @post = Post.create(:content => params["content"], :user_id => user.id)
 
         redirect to '/posts'
     end 
@@ -32,6 +32,11 @@ class PostController < ApplicationController
         post.update(:content => params["content"])
         post.save 
         redirect to "/posts/#{post.id}"
+    end 
+
+    delete '/posts/:id' do 
+        Post.destroy(params[:id])
+        redirect to '/posts'
     end 
 
 
