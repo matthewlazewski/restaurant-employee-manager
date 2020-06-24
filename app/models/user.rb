@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
     has_many :posts 
     has_secure_password 
 
-    enum role: [:employee, :manager]
-
-    def self.set_default_role 
+    enum role: [:manager, :employee]
+    
+    def set_default_role
         self.role ||= :manager 
     end 
 end 

@@ -21,9 +21,10 @@ class UserController < ApplicationController
           end
         end
     
-        @user = User.create(:username => params["username"], :email => params["email"], :password => params[:password], :role => params[:role] )
+        @user = User.create(:username => params["username"], :email => params["email"], :password => params[:password])
+        @user.set_default_role 
         session[:user_id] = @user.id
-    
+        
         redirect to '/posts'
     end
 

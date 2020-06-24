@@ -4,7 +4,7 @@ class JobController < ApplicationController
     get '/jobs' do 
         @user = current_user
         @jobs = Job.all 
-        binding.pry 
+
         erb :'/jobs/index'
     end 
 
@@ -13,6 +13,25 @@ class JobController < ApplicationController
             redirect to '/login'
         end 
         erb :'jobs/new'
+    end
+
+    get '/jobs/:id' do 
+        @job = Job.find(params[:id])
+        erb :'jobs/show'
+    end 
+
+    get '/posts/:id/edit' do 
+        if !logged_in? 
+            redirect to '/login'
+        end 
+
+        @job = Job.find(params[:id])
+
+        if current_user.id != @post.user_id
+            flash[:message] = "You don't have access to edit this post. " 
+            redirect to '/jobs
+        end 
+        erb :'/jobs/edit'
     end
 
     post '/jobs' do 
@@ -26,10 +45,21 @@ class JobController < ApplicationController
         redirect to '/jobs'
     end
 
-    get '/jobs/reset' do 
-        @jobs = Job.all
-        @jobs.clear
+    patch '/jobs/:id' do 
+        job = Job.find(params[:id])
+        
+        if current_user.id == job.user_id 
+            job.update(:content => params["name"])
+            job.save 
+        else 
+            #error 
+        end
+        redirect to "/jobs/#{job.id}"
     end 
 
+    delete '/jobs/:id' do 
+        Job.destroy(params[:id])
+        redirect to '/jobs'
+    end
 
 end 
