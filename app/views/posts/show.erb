@@ -1,5 +1,10 @@
-<p>Message: <%= @post.content %></p>
-<p>From: <%= @post.user.username %></p> 
+
+<br><br>
+<p><strong>Message:</strong> <%= @post.content %></p>
+
+
+<p><strong>From:</strong> <%= @post.user.username %> </p>
+
 <br><br>
 
 <% if @post.user == current_user %>

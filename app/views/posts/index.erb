@@ -1,6 +1,4 @@
-<%# if current_user.role == "manager" %>
-        <a href="/jobs">Manage Jobs</a>
-<% #end %>
+
 <% if logged_in? %>
 <h1>Welcome, <%= current_user.username %>!</h1>
     <% @posts.each do |post| %>
@@ -8,6 +6,6 @@
             <li><a href="/posts/<%= post.id %>"><%= post.content %></a></li>
         </ul>
     <% end %>
+    <br>
     <a href= "/posts/new"><button>New Post</button></a>
-    <a href="/logout"><button>Log Out</button></a>
 <% end %>

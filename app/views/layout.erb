@@ -17,14 +17,14 @@
     <div class="wrapper">
       <div class="navbar">
         <% if current_user %>
+          <span><strong><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></strong></span> 
           <a href="/posts/new">Create Post</a>
           <a href="/posts">All Posts</a>
+          <a href="/jobs">Jobs</a>
           <a href="/logout">Logout</a>
-          <span><strong><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></strong></span> 
         <% end %>
-
-        <%= yield %>
       </div>
+        <%= yield %>
       <footer class="branding">
         <small>&copy; 2020 <strong>RestaurantEmployeeManager</strong></small>
       </footer>

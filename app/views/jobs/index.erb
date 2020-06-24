@@ -4,8 +4,9 @@
 <% @jobs.each do |job|%>
         <li><a href="/jobs/<%= job.id %>"><%= job.name %></li>
 <% end %>
-<%# if @user.role == "manager" %>
-        <a href="/jobs/new">Manage Jobs</a>
-        <a href="/jobs/edit">Edit Jobs</a>
-<%# end %>
 </ul>
+<br><br>
+<a href= "/jobs/new"><button>New Job</button></a>
+<a href="/logout/edit"><button>Edit Job</button></a>
+
+

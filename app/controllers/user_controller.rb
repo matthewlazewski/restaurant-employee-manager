@@ -2,7 +2,7 @@ require 'pry'
 
 class UserController < ApplicationController 
 
-    get '/users/all' do
+    get '/users' do
         @users = User.all 
         erb :'/users/all'
     end
@@ -13,29 +13,26 @@ class UserController < ApplicationController
     end 
 
     post '/signup' do
-        # params.each do |label, input|
-        #   if input.empty?
-        #     #flash[:signup_error] = "Please enter a value for #{label}"
-        #     @error
-        #     redirect to '/signup'
-        #   end
-        # end
-        #job = params[:job]
-        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"],:job_id => params["job_id"])
-        user.set_default_role 
+        params.each do |label, input|
+          if input.empty?
+            #flash[:signup_error] = "Please enter a value for #{label}"
+            redirect to '/signup'
+          end
+        end
+        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"],:job_id => params["job_id"]) 
         session[:user_id] = user.id
-        redirect to '/posts'
+        redirect to '/users'
     end
 
     get '/users/:id' do 
         @post = Post.find_by_id(params[:user_id])
         @user = User.find_by_id(params[:id])
-        erb :'/posts/show'
+        erb :'/users/show'
     end 
 
     get '/logout' do 
         session.clear 
-        redirect to '/login'
+        redirect to '/'
     end 
     
     get '/login' do 
