@@ -3,7 +3,6 @@ class PostController < ApplicationController
     get '/posts' do 
         @posts = Post.all 
         @user = current_user 
-        @user.set_default_role 
         erb :'posts/index'
     end 
 

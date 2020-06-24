@@ -8,14 +8,20 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions 
     set :session_secret, ENV['SESSION_SECRET']
+    #set :show_exception, false 
   end
+
+  not_found do 
+    status 404 
+    erb :error
+  end 
 
   get "/" do
     erb :welcome
   end
 
-  get "/clear" do 
-    session.destroy
+  error ActiveRecord::RecordNotFound do 
+    redirect to '/'
   end 
 
   helpers do

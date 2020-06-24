@@ -2,10 +2,10 @@
 <h1>All Jobs</h1>
 <ul>
 <% @jobs.each do |job|%>
-        <li><%= job.name %></li>
+        <li><a href="/jobs/<%= job.id %>"><%= job.name %></li>
 <% end %>
-<% if @user.role == "manager" %>
+<%# if @user.role == "manager" %>
         <a href="/jobs/new">Manage Jobs</a>
         <a href="/jobs/edit">Edit Jobs</a>
-<% end %>
+<%# end %>
 </ul>

@@ -2,7 +2,7 @@
 
 <form action="/jobs/<%= @job.id %>" method="POST">
     <input id= "hidden" type = "hidden" name="_method" value="patch">
-    <textarea type="text" name="content" rows="5" cols="50"><%= @job.content %></textarea>
+    <input type="text" name="name" rows="5" cols="50" placeholder="<%= @job.name %>">
     <br>
     <br>
     <input type="submit" value="Edit">

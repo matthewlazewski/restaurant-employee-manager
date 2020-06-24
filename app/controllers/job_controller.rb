@@ -16,31 +16,32 @@ class JobController < ApplicationController
     end
 
     get '/jobs/:id' do 
+        user = current_user
         @job = Job.find(params[:id])
         erb :'jobs/show'
     end 
 
-    get '/posts/:id/edit' do 
+    get '/jobs/:id/edit' do 
         if !logged_in? 
             redirect to '/login'
         end 
 
         @job = Job.find(params[:id])
 
-        if current_user.id != @post.user_id
-            flash[:message] = "You don't have access to edit this post. " 
-            redirect to '/jobs
-        end 
+        # if current_user.id != @job.user_id
+        #     flash[:message] = "You don't have access to edit this post. " 
+        #     redirect to '/jobs'
+        # end 
         erb :'/jobs/edit'
     end
 
     post '/jobs' do 
-        @user = current_user 
+        user = current_user 
         if params["name"].empty?
             #flash[:no_content] = "Please fill your post."
             redirect to '/jobs/new'
         end 
-        @job = Job.create(:name => params["name"])
+        @job = Job.create(params)
 
         redirect to '/jobs'
     end
@@ -48,8 +49,8 @@ class JobController < ApplicationController
     patch '/jobs/:id' do 
         job = Job.find(params[:id])
         
-        if current_user.id == job.user_id 
-            job.update(:content => params["name"])
+        if current_user.id
+            job.update(:name => params["name"])
             job.save 
         else 
             #error 

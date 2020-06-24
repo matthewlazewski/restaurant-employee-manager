@@ -1,6 +1,6 @@
-<% if current_user.role == "manager" %>
+<%# if current_user.role == "manager" %>
         <a href="/jobs">Manage Jobs</a>
-<% end %>
+<% #end %>
 <% if logged_in? %>
 <h1>Welcome, <%= current_user.username %>!</h1>
     <% @posts.each do |post| %>

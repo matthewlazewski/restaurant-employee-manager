@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="nav-bar">
+      <div class="navbar">
         <% if current_user %>
           <a href="/posts/new">Create Post</a>
           <a href="/posts">All Posts</a>
@@ -24,7 +24,7 @@
         <% end %>
 
         <%= yield %>
-
+      </div>
       <footer class="branding">
         <small>&copy; 2020 <strong>RestaurantEmployeeManager</strong></small>
       </footer>
