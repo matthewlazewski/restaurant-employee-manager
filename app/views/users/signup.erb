@@ -8,7 +8,7 @@
   <p>Email: <input type="text" name="email"></p>
   <p>Password: <input type="password" name="password"></p>
   <% @jobs.each do |job|%>
-    <input type="radio" name="job" value="<% job.id %>"<%= job.name %>>
+    <input type="radio" name="job_id" value="<%= job.id %>"><%= job.name %></input>
   <% end %>
   <input type="submit" value="Sign Up">
 </form>
