@@ -1,3 +1,5 @@
+<br>
+<h3 style="text-align: center"><%= flash[:access] %></h3>
 
 <h1>All Jobs</h1>
 <ul>
@@ -6,7 +8,10 @@
 <% end %>
 </ul>
 <br><br>
-<a href= "/jobs/new"><button>New Job</button></a>
-<a href="/logout/edit"><button>Edit Job</button></a>
+
+<% if current_user.admin == true %>
+        <a href= "/jobs/new"><button>New Job</button></a>
+        <a href="/logout/edit"><button>Edit Job</button></a>
+<% end %>
 
 

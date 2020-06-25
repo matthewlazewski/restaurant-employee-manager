@@ -7,12 +7,14 @@ The goal of this application is to provide restaurant employees with an interfac
 Project is created with: 
 * Sinatra
 * ActiveRecord 
+* Corneal
 
 ## Setup 
-To run this project, install locally using npm: 
+To run this project, install locally using these steps:
 
 ```
-$ cd ./FlatironProjects/SinatraProject
-$ npm install
-$ npm start
+$ git clone https://https://github.com/matthewlazewski/restaurant-employee-manager
+$ cd SinatraProject
+$ bundle install 
+$ shotgun 
 ```
