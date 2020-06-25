@@ -1,4 +1,10 @@
-<p>Name: <%= @user.username%></p>
-<p>Job: <%= @user.job.name %>
-<br><br>
+<h1>Profile Page</h1>
+<br>
+<p><strong>Name:</strong> <%= @user.username%></p>
+<p><strong>Job:</strong> <%= @user.job.name %>
+<br>
+<p><strong>Posts:</strong></p>  <ol type="1"><% @user.posts.each do |post| %>
+            <li><%= post.content %></li><br>
+            <% end %>
+        </ol>
 

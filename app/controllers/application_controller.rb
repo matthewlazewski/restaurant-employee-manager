@@ -1,4 +1,6 @@
 require './config/environment'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -8,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions 
     set :session_secret, ENV['SESSION_SECRET']
+    register Sinatra::Flash 
     #set :show_exception, false 
   end
 
@@ -33,9 +36,6 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by_id(session[:user_id])
     end 
 
-    # def set_default_role 
-    #   current_user.role ||= :manager 
-    # end 
   end 
 
 end

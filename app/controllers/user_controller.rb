@@ -1,4 +1,6 @@
 require 'pry'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class UserController < ApplicationController 
 
@@ -15,7 +17,7 @@ class UserController < ApplicationController
     post '/signup' do
         params.each do |label, input|
           if input.empty?
-            #flash[:signup_error] = "Please enter a value for #{label}"
+            flash[:error] = "Please enter a valid #{label}."
             redirect to '/signup'
           end
         end
@@ -25,7 +27,8 @@ class UserController < ApplicationController
     end
 
     get '/users/:id' do 
-        @post = Post.find_by_id(params[:user_id])
+        job = Job.find_by_id(params[:id])
+        posts = Post.find_by_id(params[:user_id])
         @user = User.find_by_id(params[:id])
         erb :'/users/show'
     end 
@@ -45,7 +48,7 @@ class UserController < ApplicationController
             session[:user_id] = user.id 
             redirect to '/posts'     
         else
-            #flash[:message] = "Incorrect username of password. Please try again."
+            flash[:message] = "Incorrect username or password. Please try again."
             redirect to '/login'
         end
     end     

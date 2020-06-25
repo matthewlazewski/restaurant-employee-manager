@@ -18,6 +18,7 @@
       <div class="navbar">
         <% if current_user %>
           <span><strong><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></strong></span> 
+          <a href='/users/all'>Employees </a>
           <a href="/posts/new">Create Post</a>
           <a href="/posts">All Posts</a>
           <a href="/jobs">Jobs</a>

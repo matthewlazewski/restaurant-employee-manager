@@ -9,6 +9,8 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+
+require 'sinatra/flash'
 require './app/controllers/application_controller'
 require './app/controllers/job_controller'
 require './app/controllers/post_controller'

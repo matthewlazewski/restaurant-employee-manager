@@ -1,6 +1,4 @@
-<% if @error %>
-    <h1>Please Try Again</h1>
-<% end %>
+<%= flash[:error] %>
 <h3>Sign Up</h3>
 
 <form action="/signup" method="POST">
