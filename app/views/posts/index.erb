@@ -1,6 +1,7 @@
 
 <% if logged_in? %>
-<h1>Welcome, <%= current_user.username %>!</h1>
+<h1><u>Welcome, <%= current_user.username %>!</u></h1>
+    <h3>All Posts: </h3>
     <% @posts.each do |post| %>
         <ul>
             <li><a href="/posts/<%= post.id %>"><%= post.content %></a></li>

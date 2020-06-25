@@ -1,51 +1,53 @@
 
-/* --- Reset Styles --- */
-* {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 html, body {
   height: 100%;
   width: 100%;
+  font-family: 'Roboto Slab', serif;
 }
+
+
 
 /* --- Welcome Page Styles --- */
 body {
-  background-color: #ffa700;
+  background-image: url(../images/dan-gold-E6HjQaB7UEA-unsplash.jpg);
+  background-attachment: fixed;
+  background-size: cover;
   color: #333;
-  font-family: Sans-Serif;
+  font-family: 'Roboto Slab', serif;
   line-height: 18px;
   align-content: center;
   width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .wrapper {
-  background: #fff;
+  background: #e6ffff;
   -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
   box-shadow: 0 0 10px rgba(0,0,0,.3);
-  margin: 16px auto;
+  margin: 25px auto;
+  padding: 2.25%; 
   width: 100%;
-  padding: 2.25%; /* 18px / 800px */
 }
 
-.navbar {
-  width: 500px;
-  background-color: #fff;
-  overflow: auto;
+.wrapper nav {
+  width: 100%;
+  background-color: #e6ffff;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar a {
-  width: 25%;
-  text-align: center;
+.wrapper nav a {
+  text-decoration: none;
+  transtion: 0.5s;
 }
 
-.navbar a:hover{
-  background-color: grey;
+.wrapper nav a:hover {
+  letter-spacing: 2px;
 }
-
 
 h1 {
   font-size: 36px;
@@ -106,7 +108,7 @@ footer.branding {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    width: auto;
+    width: 100%;
   }
 
   .content, .sidebar {

@@ -10,6 +10,8 @@
 <% if @post.user == current_user %>
 
 <a href="/posts/<%= @post.id %>/edit"><button>Edit Post</button></a>
+<br>
+
 <form method="POST" action= "/posts/<%= @post.id %>">
     <input type="hidden" value="DELETE" name="_method">
     <input type="submit" value ="Delete">

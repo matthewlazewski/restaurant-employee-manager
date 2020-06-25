@@ -10,20 +10,28 @@
     <title>RestaurantEmployeeManager</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
     <div class="wrapper">
-      <div class="navbar">
+      <div>
         <% if current_user %>
-          <span><strong><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></strong></span> 
+        <nav>
+          <a href="/users/<%= current_user.id %>"> Home </a>
+        
           <a href='/users/all'>Employees </a>
+        
           <a href="/posts/new">Create Post</a>
+        
           <a href="/posts">All Posts</a>
+        
           <a href="/jobs">Jobs</a>
+        
           <a href="/logout">Logout</a>
         <% end %>
+        </nav>
       </div>
         <%= yield %>
       <footer class="branding">

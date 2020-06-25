@@ -1,6 +1,4 @@
 require 'pry'
-require 'sinatra/base'
-require 'sinatra/flash'
 
 class UserController < ApplicationController 
 
@@ -28,8 +26,8 @@ class UserController < ApplicationController
 
     get '/users/:id' do 
         job = Job.find_by_id(params[:id])
-        posts = Post.find_by_id(params[:user_id])
-        @user = User.find_by_id(params[:id])
+        posts = Post.find_by(user_id: params[:user_id])
+        @user = User.find_by(id: params[:id])
         erb :'/users/show'
     end 
 

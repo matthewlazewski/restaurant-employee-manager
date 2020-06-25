@@ -35,7 +35,7 @@ class PostController < ApplicationController
     post '/posts' do 
         user = current_user 
         if params["content"].empty?
-            #flash[:no_content] = "Please fill your post."
+            flash[:no_content] = "Please fill your post."
             redirect to '/posts/new'
         end 
         @post = Post.create(:content => params["content"], :user_id => user.id)
@@ -50,7 +50,7 @@ class PostController < ApplicationController
             post.update(:content => params["content"])
             post.save 
         else 
-            #error 
+            flash[:user] = "You don't have permission to edit that post." 
         end
         redirect to "/posts/#{post.id}"
     end 
