@@ -58,7 +58,7 @@ class JobController < ApplicationController
     end 
 
     delete '/jobs/:id' do 
-        if current_user.admin == true 
+        if current_user.admin = true 
             Job.destroy(params[:id])
             redirect to '/jobs'
         end 
