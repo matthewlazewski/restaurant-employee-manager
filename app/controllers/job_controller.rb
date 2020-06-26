@@ -2,6 +2,10 @@ require 'pry'
 
 class JobController < ApplicationController 
     get '/jobs' do 
+        if !logged_in?
+            redirect to '/login'
+        end 
+
         @user = current_user
         @jobs = Job.all 
         erb :'/jobs/index'
@@ -15,14 +19,16 @@ class JobController < ApplicationController
         erb :'jobs/new'
     end
 
-    get '/jobs/:id' do 
+    get '/jobs/:id' do
+        @user = current_user 
         @job = Job.find(params[:id])
         erb :'jobs/show'
     end 
 
     get '/jobs/:id/edit' do 
-        if current_user.admin = true
-            user = current_user
+        
+        if current_user.admin == true
+            @user = current_user
             @job = Job.find(params[:id])
             erb :'jobs/edit'
         else
@@ -35,8 +41,8 @@ class JobController < ApplicationController
 
     post '/jobs' do 
 
-        if current_user.admin = true 
-            user = current_user 
+        if current_user.admin == true 
+            @user = current_user 
             if params["name"].empty?
                 flash[:no_content] = "Please fill your post."
                 redirect to '/jobs/new'
