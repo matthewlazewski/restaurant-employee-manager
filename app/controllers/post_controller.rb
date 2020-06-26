@@ -21,7 +21,7 @@ class PostController < ApplicationController
 
     get '/posts/:id/edit' do 
         @user = current_user
-        
+
         if !logged_in? 
             redirect to '/login'
         end 
@@ -59,10 +59,12 @@ class PostController < ApplicationController
     end 
 
     delete '/posts/:id' do 
+        post = Post.find(params[:id])
+
         if current_user.id == post.user_id
             Post.destroy(params[:id])
+            redirect to '/posts'
         end 
-        redirect to '/posts'
     end 
 
 
