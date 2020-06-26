@@ -14,11 +14,14 @@ class PostController < ApplicationController
     end
     
     get '/posts/:id' do 
+        @user = current_user
         @post = Post.find(params[:id])
         erb :'posts/show'
     end 
 
     get '/posts/:id/edit' do 
+        @user = current_user
+        
         if !logged_in? 
             redirect to '/login'
         end 

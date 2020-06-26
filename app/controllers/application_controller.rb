@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions 
     set :session_secret, ENV['SESSION_SECRET']
     register Sinatra::Flash 
-    #set :show_exception, false 
+    set :show_exception, false 
   end
 
   not_found do 

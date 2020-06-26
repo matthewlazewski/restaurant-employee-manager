@@ -26,9 +26,8 @@ class JobController < ApplicationController
     end 
 
     get '/jobs/:id/edit' do 
-        
-        if current_user.admin == true
-            @user = current_user
+        @user = current_user
+        if @user.admin == true
             @job = Job.find(params[:id])
             erb :'jobs/edit'
         else
@@ -37,12 +36,9 @@ class JobController < ApplicationController
         end 
     end 
 
-   
-
     post '/jobs' do 
-
-        if current_user.admin == true 
-            @user = current_user 
+        @user = current_user
+        if @user.admin = true  
             if params["name"].empty?
                 flash[:no_content] = "Please fill your post."
                 redirect to '/jobs/new'
@@ -56,7 +52,7 @@ class JobController < ApplicationController
     patch '/jobs/:id' do 
         job = Job.find(params[:id])
         
-        if current_user.admin =true 
+        if current_user.admin = true 
             job.update(:name => params["name"])
             job.save  
         end
