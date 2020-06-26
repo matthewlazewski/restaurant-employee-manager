@@ -27,7 +27,7 @@ class JobController < ApplicationController
 
     get '/jobs/:id/edit' do 
         @user = current_user
-        if @user.admin == true
+        if @user.admin = true
             @job = Job.find(params[:id])
             erb :'jobs/edit'
         else
